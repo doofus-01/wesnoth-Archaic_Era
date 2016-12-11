@@ -1,0 +1,12 @@
+*~
+*.pbl
+*.ign
+*.xcf
+*.bak
+*-bak
+*.tgz
+deadjoe
+DEADJOE
+*.dump
+.svn/
+.git/
