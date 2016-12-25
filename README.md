@@ -26,5 +26,5 @@ of artwork from the BfW project, so there are some conflicts to work out first.
 Installing
 ----------
 
-This add-on is best installed through the BfW add-on interface.  The the BfW help for more information.
+This add-on is best installed through the BfW add-on interface.  Please see the BfW help for more information.
 
