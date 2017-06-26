@@ -19,8 +19,8 @@ the terms of the GNU General Public License version 2, or (at your option) any
 later version, under the same terms as the main BfW project.
 
 
-Note: The artwork will most likely be released under CC-BY-SA, but there is a fraction that is derivative 
-of artwork from the BfW project, so there are some conflicts to work out first.
+Note: Most of the artwork is released under CC BY-SA, but there is a fraction that is derivative 
+of artwork from the BfW project.  Please see the ART_LICENSE file for more information.
 
 
 Installing
