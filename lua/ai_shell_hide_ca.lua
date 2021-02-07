@@ -11,7 +11,8 @@ function ca_shell_hide:evaluation(cfg)
 	--wesnoth.message("evaluating")
 -- start with two or more enemies, not level 0
 -- this is a dumb function, need to improve
-	local adj = wesnoth.get_units( { type = "Terrapin,Snapper,Tortoise,Rock Snapper,Rockback,Adamantine",
+--	local adj = wesnoth.get_units( { type = "Terrapin,Snapper,Tortoise,Rock Snapper,Rockback,Adamantine",
+	local adj = wesnoth.units.find_on_map( { type = "Terrapin,Snapper,Tortoise,Rock Snapper,Rockback,Adamantine",
 					 side = wesnoth.current.side,
 					 { "filter_adjacent", 
 					 	{
@@ -31,7 +32,8 @@ end
 function ca_shell_hide:execution(cfg)
 	--wesnoth.message("executing")
 	local indx = 0
-	local adj = wesnoth.get_units( { type = "Terrapin,Snapper,Tortoise,Rock Snapper,Rockback,Adamantine",
+--	local adj = wesnoth.get_units( { type = "Terrapin,Snapper,Tortoise,Rock Snapper,Rockback,Adamantine",
+	local adj = wesnoth.units.find_on_map( { type = "Terrapin,Snapper,Tortoise,Rock Snapper,Rockback,Adamantine",
 					 side = wesnoth.current.side,
 					 { "filter_adjacent", 
 					 	{

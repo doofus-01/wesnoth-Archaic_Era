@@ -10,7 +10,8 @@ function ca_plague_attack:evaluation(cfg, data)
   -- this may be too simple-minded...
 	--	wesnoth.message("start evaluation")
 
-   local all_units = wesnoth.get_units({ side = wesnoth.current.side })
+--   local all_units = wesnoth.get_units({ side = wesnoth.current.side })
+   local all_units = wesnoth.units.find_on_map({ side = wesnoth.current.side })
 
   -- find units that have the plague special
    local units = {}
@@ -54,7 +55,8 @@ function ca_plague_attack:evaluation(cfg, data)
 --		local is_pl = wesnoth.match_unit(enemy,{ {"not", {{"status", {unplagueable = "yes" }}} } }) --always evaluates to 'false'
 --		local is_pl = wesnoth.match_unit(enemy,{ {"status", {unplagueable = "yes" }} }) -- always evaluates to 'true'
 --		local is_up = wesnoth.match_unit(enemy,{ {"status", {poopy = "yes" } }})
-		local enemy_status = helper.get_child(enemy.__cfg, "status")
+--		local enemy_status = helper.get_child(enemy.__cfg, "status")
+		local enemy_status = wml.get_child(enemy.__cfg, "status")
 		if enemy_status.unplageable == true 
 		  or enemy_status.not_living == true 
 		then

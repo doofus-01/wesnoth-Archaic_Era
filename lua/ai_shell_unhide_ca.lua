@@ -12,7 +12,8 @@ function ca_shell_unhide:evaluation(cfg)
 	--wesnoth.message("evaluating")
 -- start with two or more enemies, not level 0
 -- this is a dumb function, need to improve
-	local adj = wesnoth.get_units( { status = "shell_hiding",
+--	local adj = wesnoth.get_units( { status = "shell_hiding",
+	local adj = wesnoth.units.find_on_map( { status = "shell_hiding",
 					 side = wesnoth.current.side,
 					 { "filter_adjacent", 
 					 	{
@@ -32,7 +33,8 @@ end
 function ca_shell_unhide:execution(cfg)
 	--wesnoth.message("executing")
 	local indx = 0
-	local adj = wesnoth.get_units( { status = "shell_hiding",
+--	local adj = wesnoth.get_units( { status = "shell_hiding",
+	local adj = wesnoth.units.find_on_map( { status = "shell_hiding",
 					 side = wesnoth.current.side,
 					 { "filter_adjacent", 
 					 	{

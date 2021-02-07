@@ -12,10 +12,12 @@ function aa_ai_helper.has_weapon_special(unit, special_tag, special_id)
     -- it finds the ID.
     -- Also returns the number of the first weapon with this special
     local weapon_number = 0
-    for att in H.child_range(unit.__cfg, 'attack') do
+--    for att in H.child_range(unit.__cfg, 'attack') do
+    for att in wml.child_range(unit.__cfg, 'attack') do
         weapon_number = weapon_number + 1
-        for sp in H.child_range(att, 'specials') do
-               if H.get_child(sp, special_tag, special_id) then
+        for sp in wml.child_range(att, 'specials') do
+--               if H.get_child(sp, special_tag, special_id) then
+               if wml.get_child(sp, special_tag, special_id) then
                                return true, weapon_number
                end
         end
@@ -75,7 +77,8 @@ function aa_ai_helper.get_attacks(units, cfg)
     -- Note: the remainder is optimized for speed, so we only get_units
     -- once,
     -- do not use WML filters, etc.
-    local all_units = wesnoth.get_units()
+--    local all_units = wesnoth.get_units()
+    local all_units = wesnoth.units.find_on_map()
 
     local enemy_map, my_unit_map, other_unit_map = LS.create(), LS.create(), LS.create()
     for i,unit in ipairs(all_units) do
