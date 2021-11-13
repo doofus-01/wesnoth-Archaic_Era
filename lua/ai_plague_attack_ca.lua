@@ -49,7 +49,7 @@ function ca_plague_attack:evaluation(cfg, data)
           and (attack.def_stats.hp_chance[0] > 0) 
         then 
 	        local is_pl = true
-		local enemy = wesnoth.get_unit(attack.target.x,attack.target.y)
+		local enemy = wesnoth.units.get(attack.target.x,attack.target.y)
 		  -- find susceptable enemies they can attack
 --		wesnoth.match_unit() is useless
 --		local is_pl = wesnoth.match_unit(enemy,{ {"not", {{"status", {unplagueable = "yes" }}} } }) --always evaluates to 'false'
@@ -84,8 +84,8 @@ end
 
 
 function ca_plague_attack:execution(cfg, data)
-    local attacker = wesnoth.get_unit(data.PU_best_attack.src.x, data.PU_best_attack.src.y)
-    local defender = wesnoth.get_unit(data.PU_best_attack.target.x, data.PU_best_attack.target.y)
+    local attacker = wesnoth.units.get(data.PU_best_attack.src.x, data.PU_best_attack.src.y)
+    local defender = wesnoth.units.get(data.PU_best_attack.target.x, data.PU_best_attack.target.y)
     local def_type = defender.type
     local weapon = -1
         

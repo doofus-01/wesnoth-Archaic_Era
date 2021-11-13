@@ -152,7 +152,7 @@ function aa_ai_helper.get_attacks(units, cfg)
                         -- unit (etc.).
                         for _,uiw_loc in ipairs(uiw_reach) do
                             -- Unit in the way of the unit in the way
-                            local uiw_uiw = wesnoth.get_unit(uiw_loc[1], uiw_loc[2])
+                            local uiw_uiw = wesnoth.units.get(uiw_loc[1], uiw_loc[2])
                             if (not uiw_uiw) then
                                 add_target = true
                                 break
