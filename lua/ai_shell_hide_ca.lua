@@ -1,5 +1,5 @@
 
-local H = wesnoth.require "lua/helper.lua"
+-- local H = wesnoth.require "lua/helper.lua"
 local AH = wesnoth.require "ai/lua/ai_helper.lua"
 
 -----------------------------------------

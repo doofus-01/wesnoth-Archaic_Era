@@ -1,4 +1,4 @@
-local helper = wesnoth.require "lua/helper.lua"
+-- local helper = wesnoth.require "lua/helper.lua"
 local AH = wesnoth.require "ai/lua/ai_helper.lua"   
 local AAH = wesnoth.require "~add-ons/Archaic_Era/lua/archaic_era_ai_helper.lua"   
 local BC = wesnoth.require "ai/lua/battle_calcs.lua"
@@ -93,14 +93,14 @@ function ca_plague_attack:execution(cfg, data)
     if (not attacker) or (not attacker.valid) then return end
     if (not defender) or (not defender.valid) then return end
 -- the case where the attack is interrupted, by a concealed unit, for example.
-    if (helper.distance_between(attacker.__cfg.x, attacker.__cfg.y, defender.__cfg.x, defender.__cfg.y) ~= 1) then return end
+    if (wesnoth.map.distance_between(attacker.__cfg.x, attacker.__cfg.y, defender.__cfg.x, defender.__cfg.y) ~= 1) then return end
     
 
                     
 -- need to find which weapon index represents the plague, even though we did this already
     local a_index = 1
-    while a_index <= helper.child_count(attacker.__cfg,"attack") do
-	local weapon_temp = helper.get_nth_child(attacker.__cfg, "attack", a_index)
+    while a_index <= wml.child_count(attacker.__cfg,"attack") do
+	local weapon_temp = wml.get_nth_child(attacker.__cfg, "attack", a_index)
 	if weapon_temp.name == "aa_khthon_enthrall_attack" then
 		 weapon = a_index
 	end

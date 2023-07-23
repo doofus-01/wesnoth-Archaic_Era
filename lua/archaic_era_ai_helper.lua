@@ -1,5 +1,22 @@
-local H = wesnoth.require "lua/helper.lua"
+-- local H = wesnoth.require "lua/helper.lua"
+local H = {}
 local LS = wesnoth.require "lua/location_set.lua"
+
+-- copied from core helper.lua, because of inconsistent and undocumented deprecations, and I don't want to deal with it right now
+function H.adjacent_tiles(x, y, with_borders)
+        local adj = {wesnoth.map.get_adjacent_hexes(x, y)}
+        local i = 0
+        return function()
+                while i < #adj do
+                        i = i + 1
+                        local u, v = adj[i][1], adj[i][2]
+                        if wesnoth.current.map:on_board(u, v, with_borders) then
+                                return u, v
+                        end
+                end
+                return nil
+        end
+end
 
 
 
@@ -84,7 +101,7 @@ function aa_ai_helper.get_attacks(units, cfg)
     for i,unit in ipairs(all_units) do
         -- The value of all the location sets is the index of the
         -- unit in the all_units array
-        if wesnoth.is_enemy(unit.side, side) and (not unit.status.petrified) then
+        if wesnoth.sides.is_enemy(unit.side, side) and (not unit.status.petrified) then
             enemy_map:insert(unit.x, unit.y, i)
         end
 
@@ -120,7 +137,7 @@ function aa_ai_helper.get_attacks(units, cfg)
         if reaches:get(unit.x, unit.y) then
             reach = reaches:get(unit.x, unit.y)
         else
-            reach = wesnoth.find_reach(unit)
+            reach = wesnoth.paths.find_reach(unit)
             reaches:insert(unit.x, unit.y, reach)
         end
 
@@ -140,7 +157,7 @@ function aa_ai_helper.get_attacks(units, cfg)
                         if reaches:get(unit_in_way.x, unit_in_way.y) then
                             uiw_reach = reaches:get(unit_in_way.x, unit_in_way.y)
                         else
-                            uiw_reach = wesnoth.find_reach(unit_in_way)
+                            uiw_reach = wesnoth.paths.find_reach(unit_in_way)
                             reaches:insert(unit_in_way.x, unit_in_way.y, uiw_reach)
                         end
 
@@ -166,15 +183,15 @@ function aa_ai_helper.get_attacks(units, cfg)
                         local att_stats, def_stats
                         local att_weapon, def_weapon
                         if cfg.simulate_combat then
-                            local unit_dst = wesnoth.copy_unit(unit)
+                            local unit_dst = wesnoth.units.clone(unit)
                             unit_dst.x, unit_dst.y = loc[1], loc[2]
 
                             local enemy = all_units[target.i]
 			    local weapon_index = 1 -- default to first attack, since I'm not sure if '-1' is supported for simulate_combat()
 			    if cfg.weapon_id then
 				    local a_index = 1
-				    while a_index <= H.child_count(unit_dst.__cfg,"attack") do
-        				local weapon_temp = H.get_nth_child(unit_dst.__cfg, "attack", a_index)
+				    while a_index <= wml.child_count(unit_dst.__cfg,"attack") do
+        				local weapon_temp = wml.get_nth_child(unit_dst.__cfg, "attack", a_index)
                 			if weapon_temp.name == cfg.weapon_id then
                                  		weapon_index = a_index
                                         end
